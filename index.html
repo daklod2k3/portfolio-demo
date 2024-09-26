@@ -119,36 +119,51 @@
         </div>
         <div id="project" class="content-item">
           <div class="item-title">PROJECT</div>
+
           <div class="project-container">
             <!-- <div class="project-item">
-                        <div class="project-img">
-                            <img src="./public/img/unreal_engine_logo_icon.png" alt="">
-                        </div>
-                        <div class="project-des">
-                            <div class="project-title">
-                                3D Visualization - 6 month
-                            </div>
-                            <ul class="project-content">
-                                <li>Visualize Architecture</li>
-                                <li>Interact, edit Architecture</li>
-                                <li>Create Object Material</li>
-                                <li>Set up Lighting System (Lumen)</li>
-                            </ul>
-                        </div>
-                    </div> -->
+              <div class="project-body">
+                <div class="project-img">
+                  <img src="./public/img/unreal_engine_logo_icon.png" alt="" />
+                </div>
+                <div class="project-des">
+                  <div class="project-title">3D Visualization - 6 month</div>
+                  <ul class="project-content">
+                    <li>Visualize Architecture</li>
+                    <li>Interact, edit Architecture</li>
+                    <li>Create Object Material</li>
+                    <li>Set up Lighting System (Lumen)</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-footer">
+                <a
+                  href="https://daklod2k3.github.io/portfolio-demo/"
+                  style="display: block"
+                  >projectLink</a
+                >
+              </div> -->
+            </div>
           </div>
         </div>
       </div>
     </div>
     <script>
       class IWork {
-        constructor(title, imgSrc, des) {
+        constructor(title, imgSrc, des, href) {
           this.title = title;
           this.imgSrc = imgSrc;
           this.des = des;
+          this.href = href;
         }
       }
       const container = document.querySelector(".project-container");
+      /*new IWork(
+          "University Manager",
+          "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+          ["Scheduler Manager", "Class manager", "Study project manager"]
+        ),*/
+
       const workList = [
         new IWork(
           "3D Visualization - 6 month",
@@ -160,15 +175,19 @@
             "Set up Lighting System (Lumen)",
           ]
         ),
+
         new IWork(
-          "University Manager",
-          "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
-          ["Scheduler Manager", "Class manager", "Study project manager"]
+          "Emotion Recognition",
+          "./public/img/paper.png",
+          ["Research about Emotion Recognition"],
+          "https://myphungg.github.io/Emotion-Recognition/"
         ),
       ];
       Array.from(workList).forEach((work, idx) => {
         const item = document.createElement("div");
         item.className = "project-item";
+        const body = document.createElement("div");
+        body.className = "project-body";
         const itemImg = document.createElement("div");
         itemImg.className = "project-img";
         const img = document.createElement("img");
@@ -183,15 +202,24 @@
         ul.className = "project-content";
         Array.from(work.des).forEach((value, idx) => {
           const li = document.createElement("li");
-          li.textContent = value;
+          li.innerHTML = value;
           ul.append(li);
         });
 
         itemDes.append(itemTitle);
+
+        const anchor = document.createElement("a");
+        anchor.href = work.href;
+        anchor.textContent = `Link: ` + work.href;
+
         itemDes.append(ul);
 
-        item.append(itemImg);
-        item.append(itemDes);
+        body.append(itemImg);
+        body.append(itemDes);
+
+        item.append(body);
+
+        if (work.href) item.append(anchor);
 
         container.append(item);
       });

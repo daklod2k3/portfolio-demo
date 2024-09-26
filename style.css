@@ -163,12 +163,19 @@ body * {
     padding: 10px;
     padding-left: 20px;
     border: 1px solid black;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
     border-color: var(--primary-color);
     border-radius: 10px;
 
+}
+
+.project-footer {
+    margin-inline: auto;
+}
+
+.project-body {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
 }
 
 .project-img {
